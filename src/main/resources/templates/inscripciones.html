@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Inscripciones del Torneo</title>
+</head>
+<body>
+
+<h1>Inscripciones: <span th:text="${torneo.nombre}"></span></h1>
+
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>Equipo</th>
+    <th>Fecha de inscripción</th>
+    <th>Acciones</th>
+</tr>
+
+<tr th:each="i : ${listaInscripciones}">
+    <td th:text="${i.idInscripcion}"></td>
+    <td th:text="${i.equipo.nombre}"></td>
+    <td th:text="${i.fechaInscripcion}"></td>
+    <td>
+        <a th:href="@{/inscripciones/eliminar/{id}(id=${i.idInscripcion})}">
+            Eliminar
+        </a>
+    </td>
+</tr>
+
+</table>
+
+<br>
+
+<h3>Inscribir equipo</h3>
+
+<form th:action="@{/torneos/{id}/inscribir(id=${torneo.idTorneo})}"
+      th:object="${nuevaInscripcion}"
+      method="post">
+
+    <select th:field="*{equipo}">
+        <option
+            th:each="e : ${listaEquipos}"
+            th:value="${e.idEquipo}"
+            th:text="${e.nombre}">
+        </option>
+    </select>
+
+    <button type="submit">Inscribir</button>
+
+</form>
+
+<br>
+<a href="/torneos">Volver al listado de torneos</a>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registrar Videojuego</title>
+</head>
+<body>
+
+<h1>Registrar Videojuego</h1>
+
+<form th:action="@{/videojuegos/guardar}"
+      th:object="${videojuego}"
+      method="post">
+
+    <input type="hidden"
+           th:field="*{idVideojuego}">
+
+    Nombre:
+    <input type="text"
+           th:field="*{nombre}">
+    <br><br>
+
+    Género:
+    <input type="text"
+           th:field="*{genero}">
+    <br><br>
+
+    Plataforma:
+    <input type="text"
+           th:field="*{plataforma}">
+    <br><br>
+
+    Desarrollador:
+    <input type="text"
+           th:field="*{desarrollador}">
+    <br><br>
+
+	
+	
+    <button type="submit">
+        Guardar
+    </button>
+
+</form>
+<br>
+<a href="/videojuegos">
+    Volver
+</a>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Equipos</title>
+</head>
+<body>
+
+<h1>Listado de Equipos</h1>
+
+<a href="/equipos/nuevo">
+    Nuevo Equipo
+</a>
+
+<br><br>
+
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Videojuego</th>
+    <th>Capitán</th>
+    <th>Acciones</th>
+</tr>
+
+<tr th:each="e : ${listaEquipos}">
+
+    <td th:text="${e.idEquipo}"></td>
+    <td th:text="${e.nombre}"></td>
+    <td th:text="${e.videojuego.nombre}"></td>
+    <td th:text="${e.capitan.nombres}"></td>
+
+    <td>
+        <a th:href="@{/equipos/{id}(id=${e.idEquipo})}">
+            Ver jugadores
+        </a>
+        |
+        <a th:href="@{/equipos/eliminar/{id}(id=${e.idEquipo})}">
+            Eliminar
+        </a>
+		
+		<a th:href="@{/equipos/{id}/historial(id=${e.idEquipo})}">
+		    Ver historial
+		</a>	
+		
+    </td>
+
+</tr>
+
+</table>
+
+<br>
+<a href="/">Volver al inicio</a>
+
+</body>
+</html>

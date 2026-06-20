@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteClasificacion" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc84c422-4544-455e-b110-53f58861b84b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConexionTorneoEsports"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+    t.nombre AS torneo,
+    e.nombre AS equipo,
+    c.puntos,
+    c.victorias,
+    c.derrotas
+FROM clasificaciones c
+INNER JOIN equipos e ON c.id_equipo = e.id_equipo
+INNER JOIN torneos t ON c.id_torneo = t.id_torneo
+ORDER BY c.id_torneo, c.puntos DESC]]>
+	</queryString>
+	<field name="torneo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="torneo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="torneos"/>
+	</field>
+	<field name="equipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="equipo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="equipos"/>
+	</field>
+	<field name="puntos" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="puntos"/>
+		<property name="com.jaspersoft.studio.field.label" value="puntos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clasificaciones"/>
+	</field>
+	<field name="victorias" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="victorias"/>
+		<property name="com.jaspersoft.studio.field.label" value="victorias"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clasificaciones"/>
+	</field>
+	<field name="derrotas" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="derrotas"/>
+		<property name="com.jaspersoft.studio.field.label" value="derrotas"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clasificaciones"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout"/>
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="30" uuid="39193185-58be-4a34-81bb-362f374eab00">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4806cb14-9b46-4c82-b746-071aee3a85a6"/>
+				</reportElement>
+				<text><![CDATA[torneo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="0" width="90" height="30" uuid="a9e62677-39b3-4d94-bba0-cd81eba0a736">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdd76850-1020-49a5-a6ee-80cfccba513d"/>
+				</reportElement>
+				<text><![CDATA[equipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="90" height="30" uuid="d8449b4b-eb4d-4a2d-b3f7-5472e618d380">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4c990dfd-4e8c-4e07-a453-bf288b7d6bef"/>
+				</reportElement>
+				<text><![CDATA[puntos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="80" height="30" uuid="329255c2-a03a-4d45-be09-54b91dc5134a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="530919c5-5523-49c4-9cc7-e71a4bf7dc47"/>
+				</reportElement>
+				<text><![CDATA[victorias]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="80" height="30" uuid="2bd40038-44db-420d-b9cc-036ad3312c94">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2680ef00-8239-4c60-9eef-5a8a243dae4f"/>
+				</reportElement>
+				<text><![CDATA[derrotas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="132" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="50" width="80" height="50" uuid="463fb70b-c227-4110-ae19-01a652f8a2dc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4806cb14-9b46-4c82-b746-071aee3a85a6"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{torneo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="50" width="90" height="50" uuid="dcadbc95-32a1-4854-aad9-a7676ada5b3f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdd76850-1020-49a5-a6ee-80cfccba513d"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{equipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="50" width="90" height="50" uuid="a9934dc3-6c0d-43e4-8e26-8102dd9a3706">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4c990dfd-4e8c-4e07-a453-bf288b7d6bef"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{puntos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="50" width="90" height="50" uuid="5190e785-ec13-4c75-a0bc-acc7b3180853">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="530919c5-5523-49c4-9cc7-e71a4bf7dc47"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{victorias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="50" width="90" height="50" uuid="5490cbd1-94f5-43bf-b1df-c35f7f5e1e4c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2680ef00-8239-4c60-9eef-5a8a243dae4f"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{derrotas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="41" splitType="Stretch"/>
+	</summary>
+</jasperReport>

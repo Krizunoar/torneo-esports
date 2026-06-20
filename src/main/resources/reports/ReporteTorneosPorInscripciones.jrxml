@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteTorneosPorInscripciones" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a59ab3c4-8d15-4644-9892-f5d38297b753">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[dG9ybmVvcyAsMTI4LDE1LGVhZjYzYmIwLWZkOWMtNDY2MS1hNmY2LTU2ZjFiZWRkY2ZkMztpbnNj
+cmlwY2lvbmVzICwxNSwxNSxhNmVjOTE1MC1mN2FjLTQ0OTAtYWNjMi1iN2E2MzNkNDg3MDU7dmlk
+ZW9qdWVnb3MgLDIxMywxNSwzN2VlNjAzNy05OTViLTRhODYtOTk5NS1mOTEzMjY4ZGMxOTQ7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConexionTorneoEsports"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+    v.genero AS genero_juego,
+    v.nombre AS nombre_videojuego,
+    t.nombre AS nombre_torneo,
+    COUNT(i.id_inscripcion) AS total_inscritos
+FROM torneos t
+INNER JOIN videojuegos v ON t.id_videojuego = v.id_videojuego
+LEFT JOIN inscripciones i ON i.id_torneo = t.id_torneo
+GROUP BY v.genero, v.nombre, t.nombre, t.id_torneo
+ORDER BY total_inscritos DESC]]>
+	</queryString>
+	<field name="genero_juego" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="genero"/>
+		<property name="com.jaspersoft.studio.field.label" value="genero_juego"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="videojuegos"/>
+	</field>
+	<field name="nombre_videojuego" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_videojuego"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="videojuegos"/>
+	</field>
+	<field name="nombre_torneo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_torneo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="torneos"/>
+	</field>
+	<field name="total_inscritos" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="total_inscritos"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_inscritos"/>
+	</field>
+	<group name="genero_juego">
+		<groupExpression><![CDATA[$F{genero_juego}]]></groupExpression>
+	</group>
+	<group name="nombre_videojuego">
+		<groupExpression><![CDATA[$F{nombre_videojuego}]]></groupExpression>
+	</group>
+	<group name="nombre_torneo">
+		<groupExpression><![CDATA[$F{nombre_torneo}]]></groupExpression>
+	</group>
+	<group name="total_inscritos">
+		<groupExpression><![CDATA[$F{total_inscritos}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="30" uuid="211a440e-87c3-4848-8641-6fc26b781e5c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6fe0b803-abbe-470f-92e2-ecf0d80f45f0"/>
+				</reportElement>
+				<text><![CDATA[genero_juego]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="1" width="100" height="30" uuid="f29428ae-14e5-446e-944e-f236dff14d51">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1dd0e23a-c844-4197-ae68-0b6aa107a08a"/>
+				</reportElement>
+				<text><![CDATA[nombre_videojuego]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="0" width="100" height="30" uuid="17cf0383-f017-40aa-b875-f913bf1f1f58">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a0c525b8-7538-4da4-8bf3-daf37643f51d"/>
+				</reportElement>
+				<text><![CDATA[nombre_torneo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="0" width="100" height="30" uuid="eecc375a-5172-419c-ae37-0a95221cca47">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eca2a037-65c7-403b-a416-18388f94b60a"/>
+				</reportElement>
+				<text><![CDATA[total_inscritos]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="46" width="80" height="37" uuid="2bc9da68-c898-4d94-a42c-4d6e1b8a68f5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6fe0b803-abbe-470f-92e2-ecf0d80f45f0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{genero_juego}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="46" width="90" height="47" uuid="f7b5f47e-0cf3-43d1-8516-bde9d7942b3b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1dd0e23a-c844-4197-ae68-0b6aa107a08a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nombre_videojuego}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="49" width="100" height="30" uuid="d92192af-5045-406d-8612-ac6411dc2c53">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a0c525b8-7538-4da4-8bf3-daf37643f51d"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nombre_torneo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="49" width="100" height="30" uuid="d83be083-186d-416e-94a5-a12670fc850a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eca2a037-65c7-403b-a416-18388f94b60a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{total_inscritos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

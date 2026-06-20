@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Historial del Equipo</title>
+</head>
+<body>
+
+<h1>Historial: <span th:text="${equipo.nombre}"></span></h1>
+
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>Torneo</th>
+    <th>Ronda</th>
+    <th>Rival</th>
+    <th>Score</th>
+    <th>Resultado</th>
+    <th>Estado</th>
+</tr>
+
+<tr th:each="p : ${listaPartidas}">
+    <td th:text="${p.idPartida}"></td>
+    <td th:text="${p.torneo.nombre}"></td>
+    <td th:text="${p.ronda}"></td>
+    <td th:text="${p.equipo1.idEquipo == equipo.idEquipo} ? ${p.equipo2.nombre} : ${p.equipo1.nombre}"></td>
+    <td>
+        <span th:text="${p.scoreEquipo1}"></span> - <span th:text="${p.scoreEquipo2}"></span>
+    </td>
+    <td th:text="${p.equipoGanador != null and p.equipoGanador.idEquipo == equipo.idEquipo} ? 'GANÓ' : (${p.estado == 'FINALIZADA'} ? 'PERDIÓ' : '-')"></td>
+    <td th:text="${p.estado}"></td>
+</tr>
+
+</table>
+
+<br>
+<a href="/equipos">Volver al listado de equipos</a>
+
+</body>
+</html>

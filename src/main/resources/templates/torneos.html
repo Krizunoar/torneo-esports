@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Torneos</title>
+</head>
+<body>
+
+<h1>Listado de Torneos</h1>
+
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Videojuego</th>
+    <th>Estado</th>
+</tr>
+
+<tr th:each="t : ${listaTorneos}">
+
+    <td th:text="${t.idTorneo}"></td>
+
+    <td th:text="${t.nombre}"></td>
+
+    <td th:text="${t.videojuego.nombre}"></td>
+
+    <td th:text="${t.estado}"></td>
+	
+	<td>
+		    <a 
+			th:href="@{/torneos/{id}/inscripciones(id=${t.idTorneo})}">
+		    Ver inscripciones
+		    </a>
+		
+			<a
+			 th:href="@{/torneos/{id}/partidas(id=${t.idTorneo})}">
+			 Ver partidas
+			</a>
+	</td>
+	
+
+	
+</tr>
+
+</table>
+
+<br>
+<a href="/">Volver al inicio</a>
+
+
+</body>
+</html>

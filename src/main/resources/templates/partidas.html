@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Partidas del Torneo</title>
+</head>
+<body>
+
+<h1>Partidas: <span th:text="${torneo.nombre}"></span></h1>
+
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>Ronda</th>
+    <th>Equipo 1</th>
+    <th>Equipo 2</th>
+    <th>Score</th>
+    <th>Ganador</th>
+    <th>Estado</th>
+    <th>Acciones</th>
+</tr>
+
+<tr th:each="p : ${listaPartidas}">
+    <td th:text="${p.idPartida}"></td>
+    <td th:text="${p.ronda}"></td>
+    <td th:text="${p.equipo1.nombre}"></td>
+    <td th:text="${p.equipo2.nombre}"></td>
+    <td>
+        <span th:text="${p.scoreEquipo1}"></span> - <span th:text="${p.scoreEquipo2}"></span>
+    </td>
+    <td th:text="${p.equipoGanador != null} ? ${p.equipoGanador.nombre} : 'Pendiente'"></td>
+    <td th:text="${p.estado}"></td>
+    <td>
+        <!-- Solo mostrar el formulario de resultado si la partida sigue pendiente -->
+        <form th:if="${p.estado == 'PENDIENTE'}"
+              th:action="@{/partidas/{id}/resultado(id=${p.idPartida})}"
+              method="post">
+
+            <input type="number" name="scoreEquipo1" placeholder="Score 1" style="width:60px" required>
+            <input type="number" name="scoreEquipo2" placeholder="Score 2" style="width:60px" required>
+            <button type="submit">Registrar resultado</button>
+        </form>
+    </td>
+</tr>
+
+</table>
+
+<br>
+
+<h3>Crear partida nueva</h3>
+
+<form th:action="@{/torneos/{id}/partidas/crear(id=${torneo.idTorneo})}"
+      th:object="${nuevaPartida}"
+      method="post">
+
+    <p>
+        Ronda:
+        <input type="text" th:field="*{ronda}" placeholder="Ej: Cuartos de final">
+    </p>
+
+    <p>
+        Equipo 1:
+        <select th:field="*{equipo1}">
+            <option
+                th:each="i : ${listaInscripciones}"
+                th:value="${i.equipo.idEquipo}"
+                th:text="${i.equipo.nombre}">
+            </option>
+        </select>
+    </p>
+
+    <p>
+        Equipo 2:
+        <select th:field="*{equipo2}">
+            <option
+                th:each="i : ${listaInscripciones}"
+                th:value="${i.equipo.idEquipo}"
+                th:text="${i.equipo.nombre}">
+            </option>
+        </select>
+    </p>
+
+    <button type="submit">Crear partida</button>
+
+</form>
+
+<br>
+<a href="/torneos">Volver al listado de torneos</a>
+
+</body>
+</html>

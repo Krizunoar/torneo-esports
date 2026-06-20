@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Registrar Torneo</title>
+</head>
+
+<body>
+
+<h1>Registrar Torneo</h1>
+
+<form th:action="@{/torneos/guardar}"
+      th:object="${torneo}"
+      method="post">
+
+    <p>
+        Nombre:
+        <input type="text"
+               th:field="*{nombre}">
+    </p>
+
+    <p>
+        Descripción:
+        <input type="text"
+               th:field="*{descripcion}">
+    </p>
+
+    <p>
+        Fecha Inicio:
+        <input type="date"
+               th:field="*{fechaInicio}">
+    </p>
+
+    <p>
+        Fecha Fin:
+        <input type="date"
+               th:field="*{fechaFin}">
+    </p>
+
+    <p>
+        Cupo Máximo:
+        <input type="number"
+               th:field="*{cupoMaximo}">
+    </p>
+
+    <p>
+        Estado:
+        <input type="text"
+               th:field="*{estado}">
+    </p>
+
+    <p>
+        Videojuego:
+
+        <select th:field="*{videojuego}">
+
+            <option
+                th:each="v : ${listaVideojuegos}"
+                th:value="${v.idVideojuego}"
+                th:text="${v.nombre}">
+            </option>
+
+        </select>
+
+    </p>
+	
+	
+	<p>
+	    Organizador:
+
+	    <select th:field="*{organizador}">
+	        <option
+	            th:each="o : ${listaOrganizadores}"
+	            th:value="${o.idUsuario}"
+	            th:text="${o.nombres}">
+	        </option>
+	    </select>
+
+	</p>
+
+    <button type="submit">
+        Guardar
+    </button>
+
+</form>
+
+</body>
+</html>

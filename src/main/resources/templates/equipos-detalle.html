@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Detalle del Equipo</title>
+</head>
+<body>
+
+<h1>Equipo: <span th:text="${equipo.nombre}"></span></h1>
+
+<p>Videojuego: <span th:text="${equipo.videojuego.nombre}"></span></p>
+<p>Capitán: <span th:text="${equipo.capitan.nombres}"></span></p>
+
+<hr>
+
+<h2>Jugadores del equipo</h2>
+
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Username</th>
+</tr>
+
+<tr th:each="ej : ${listaJugadores}">
+    <td th:text="${ej.idEquipoJugador}"></td>
+    <td th:text="${ej.usuario.nombres}"></td>
+    <td th:text="${ej.usuario.username}"></td>
+</tr>
+
+</table>
+
+<br>
+
+<h3>Agregar jugador</h3>
+
+<form th:action="@{/equipos/{id}/agregar-jugador(id=${equipo.idEquipo})}"
+      th:object="${nuevoJugador}"
+      method="post">
+
+    <select th:field="*{usuario}">
+        <option
+            th:each="u : ${listaUsuarios}"
+            th:value="${u.idUsuario}"
+            th:text="${u.nombres}">
+        </option>
+    </select>
+
+    <button type="submit">Agregar</button>
+
+</form>
+
+<br>
+<a href="/equipos">Volver al listado</a>
+
+</body>
+</html>

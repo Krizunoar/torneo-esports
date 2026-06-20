@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registrar Equipo</title>
+</head>
+<body>
+
+<h1>Registrar Equipo</h1>
+
+<form th:action="@{/equipos/guardar}"
+      th:object="${equipo}"
+      method="post">
+
+    <p>
+        Nombre del equipo:
+        <input type="text" th:field="*{nombre}">
+    </p>
+
+    <p>
+        Videojuego:
+        <select th:field="*{videojuego}">
+            <option
+                th:each="v : ${listaVideojuegos}"
+                th:value="${v.idVideojuego}"
+                th:text="${v.nombre}">
+            </option>
+        </select>
+    </p>
+
+    <p>
+        Capitán:
+        <select th:field="*{capitan}">
+            <option
+                th:each="u : ${listaUsuarios}"
+                th:value="${u.idUsuario}"
+                th:text="${u.nombres}">
+            </option>
+        </select>
+    </p>
+
+    <button type="submit">Guardar</button>
+
+</form>
+
+<br>
+<a href="/equipos">Volver</a>
+
+</body>
+</html>
