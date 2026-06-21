@@ -3,35 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Iniciar sesión</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Sistema de Gestión de Torneos de Esports</h1>
-<h2>Iniciar sesión</h2>
+<div class="p5-login-wrap">
+  <div class="p5-login-card">
 
-<p th:if="${param.error}" style="color:red;">
-    Usuario o contraseña incorrectos.
-</p>
+    <p class="p5-login-sub">Acceso al sistema</p>
+    <h1 class="p5-login-title">TORNEO<span>ESPORTS</span></h1>
 
-<p th:if="${param.logout}" style="color:green;">
-    Sesión cerrada correctamente.
-</p>
-
-<form th:action="@{/login}" method="post">
-
-    <p>
-        Usuario:
-        <input type="text" name="username">
+    <p th:if="${param.error}" class="p5-error">
+        Usuario o contraseña incorrectos.
     </p>
 
-    <p>
-        Contraseña:
-        <input type="password" name="password">
+    <p th:if="${param.logout}" class="p5-success">
+        Sesión cerrada correctamente.
     </p>
 
-    <button type="submit">Ingresar</button>
+    <form th:action="@{/login}" method="post">
 
-</form>
+        <div class="p5-field">
+            <label>Usuario</label>
+            <input type="text" name="username">
+        </div>
+
+        <div class="p5-field">
+            <label>Contraseña</label>
+            <input type="password" name="password">
+        </div>
+
+        <button type="submit" class="p5-btn" style="width:100%;">Ingresar</button>
+
+    </form>
+
+  </div>
+</div>
 
 </body>
 </html>

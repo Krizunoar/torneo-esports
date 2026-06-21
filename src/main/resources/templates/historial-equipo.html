@@ -3,39 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <title>Historial del Equipo</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Historial: <span th:text="${equipo.nombre}"></span></h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos">Torneos</a></li>
+      <li><a href="/equipos" class="active">Equipos</a></li>
+      <li><a href="/videojuegos">Videojuegos</a></li>
+      <li><a href="/usuarios">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<table border="1">
+<header class="p5-page-header">
+  <p class="p5-page-sub">Equipo</p>
+  <h1 class="p5-page-title">Historial: <span th:text="${equipo.nombre}"></span></h1>
+</header>
 
-<tr>
-    <th>ID</th>
-    <th>Torneo</th>
-    <th>Ronda</th>
-    <th>Rival</th>
-    <th>Score</th>
-    <th>Resultado</th>
-    <th>Estado</th>
-</tr>
+<div class="p5-container">
 
-<tr th:each="p : ${listaPartidas}">
-    <td th:text="${p.idPartida}"></td>
-    <td th:text="${p.torneo.nombre}"></td>
-    <td th:text="${p.ronda}"></td>
-    <td th:text="${p.equipo1.idEquipo == equipo.idEquipo} ? ${p.equipo2.nombre} : ${p.equipo1.nombre}"></td>
-    <td>
-        <span th:text="${p.scoreEquipo1}"></span> - <span th:text="${p.scoreEquipo2}"></span>
-    </td>
-    <td th:text="${p.equipoGanador != null and p.equipoGanador.idEquipo == equipo.idEquipo} ? 'GANÓ' : (${p.estado == 'FINALIZADA'} ? 'PERDIÓ' : '-')"></td>
-    <td th:text="${p.estado}"></td>
-</tr>
+  <div class="p5-table-wrap">
+    <table class="p5-table">
 
-</table>
+      <tr>
+          <th>ID</th>
+          <th>Torneo</th>
+          <th>Ronda</th>
+          <th>Rival</th>
+          <th>Score</th>
+          <th>Resultado</th>
+          <th>Estado</th>
+      </tr>
 
-<br>
-<a href="/equipos">Volver al listado de equipos</a>
+      <tr th:each="p : ${listaPartidas}">
+          <td th:text="${p.idPartida}"></td>
+          <td th:text="${p.torneo.nombre}"></td>
+          <td th:text="${p.ronda}"></td>
+          <td th:text="${p.equipo1.idEquipo == equipo.idEquipo} ? ${p.equipo2.nombre} : ${p.equipo1.nombre}"></td>
+          <td>
+              <span th:text="${p.scoreEquipo1}"></span> - <span th:text="${p.scoreEquipo2}"></span>
+          </td>
+          <td>
+              <span th:if="${p.equipoGanador != null and p.equipoGanador.idEquipo == equipo.idEquipo}"
+                    class="p5-badge p5-badge-done">GANÓ</span>
+              <span th:if="${p.equipoGanador != null and p.equipoGanador.idEquipo != equipo.idEquipo}"
+                    class="p5-badge" style="background:var(--c-red); color:var(--c-white); border-color:var(--c-black);">PERDIÓ</span>
+              <span th:if="${p.equipoGanador == null}"
+                    class="p5-badge p5-badge-pending">-</span>
+          </td>
+          <td th:text="${p.estado}"></td>
+      </tr>
 
+    </table>
+  </div>
+
+  <br>
+  <a href="/equipos" class="p5-link-back">&larr; Volver al listado de equipos</a>
+
+</div>
+  
 </body>
 </html>

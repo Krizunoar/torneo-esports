@@ -3,55 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <title>Inscripciones del Torneo</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Inscripciones: <span th:text="${torneo.nombre}"></span></h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos" class="active">Torneos</a></li>
+      <li><a href="/equipos">Equipos</a></li>
+      <li><a href="/videojuegos">Videojuegos</a></li>
+      <li><a href="/usuarios">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<table border="1">
+<header class="p5-page-header">
+  <p class="p5-page-sub">Torneo</p>
+  <h1 class="p5-page-title">Inscripciones: <span th:text="${torneo.nombre}"></span></h1>
+</header>
 
-<tr>
-    <th>ID</th>
-    <th>Equipo</th>
-    <th>Fecha de inscripción</th>
-    <th>Acciones</th>
-</tr>
+<div class="p5-container">
 
-<tr th:each="i : ${listaInscripciones}">
-    <td th:text="${i.idInscripcion}"></td>
-    <td th:text="${i.equipo.nombre}"></td>
-    <td th:text="${i.fechaInscripcion}"></td>
-    <td>
-        <a th:href="@{/inscripciones/eliminar/{id}(id=${i.idInscripcion})}">
-            Eliminar
-        </a>
-    </td>
-</tr>
+  <div class="p5-table-wrap">
+    <table class="p5-table">
 
-</table>
+      <tr>
+          <th>ID</th>
+          <th>Equipo</th>
+          <th>Fecha de inscripción</th>
+          <th>Acciones</th>
+      </tr>
 
-<br>
+      <tr th:each="i : ${listaInscripciones}">
+          <td th:text="${i.idInscripcion}"></td>
+          <td th:text="${i.equipo.nombre}"></td>
+          <td th:text="${i.fechaInscripcion}"></td>
+          <td>
+              <a class="p5-btn-danger p5-btn" style="padding:6px 14px; font-size:11px;"
+                 th:href="@{/inscripciones/eliminar/{id}(id=${i.idInscripcion})}">
+                 Eliminar
+              </a>
+          </td>
+      </tr>
 
-<h3>Inscribir equipo</h3>
+    </table>
+  </div>
 
-<form th:action="@{/torneos/{id}/inscribir(id=${torneo.idTorneo})}"
-      th:object="${nuevaInscripcion}"
-      method="post">
+  <div class="p5-bar"></div>
 
-    <select th:field="*{equipo}">
-        <option
-            th:each="e : ${listaEquipos}"
-            th:value="${e.idEquipo}"
-            th:text="${e.nombre}">
-        </option>
-    </select>
+  <h2 class="p5-section-title">Inscribir equipo</h2>
 
-    <button type="submit">Inscribir</button>
+  <div class="p5-form-card">
 
-</form>
+    <form th:action="@{/torneos/{id}/inscribir(id=${torneo.idTorneo})}"
+          th:object="${nuevaInscripcion}"
+          method="post">
 
-<br>
-<a href="/torneos">Volver al listado de torneos</a>
+        <div class="p5-field">
+            <label>Equipo</label>
+            <select th:field="*{equipo}">
+                <option
+                    th:each="e : ${listaEquipos}"
+                    th:value="${e.idEquipo}"
+                    th:text="${e.nombre}">
+                </option>
+            </select>
+        </div>
+
+        <button type="submit" class="p5-btn">Inscribir</button>
+
+    </form>
+
+  </div>
+
+  <br>
+  <a href="/torneos" class="p5-link-back">&larr; Volver al listado de torneos</a>
+
+</div>
 
 </body>
 </html>

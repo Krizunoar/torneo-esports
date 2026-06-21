@@ -3,56 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <title>Detalle del Equipo</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Equipo: <span th:text="${equipo.nombre}"></span></h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos">Torneos</a></li>
+      <li><a href="/equipos" class="active">Equipos</a></li>
+      <li><a href="/videojuegos">Videojuegos</a></li>
+      <li><a href="/usuarios">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<p>Videojuego: <span th:text="${equipo.videojuego.nombre}"></span></p>
-<p>Capitán: <span th:text="${equipo.capitan.nombres}"></span></p>
+<header class="p5-page-header">
+  <p class="p5-page-sub">Equipo</p>
+  <h1 class="p5-page-title" th:text="${equipo.nombre}"></h1>
+</header>
 
-<hr>
+<div class="p5-container">
 
-<h2>Jugadores del equipo</h2>
+  <p style="color: var(--c-yellow); font-family: var(--font-display); font-size: 13px;">
+    VIDEOJUEGO: <span style="color: var(--c-white);" th:text="${equipo.videojuego.nombre}"></span>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    CAPITÁN: <span style="color: var(--c-white);" th:text="${equipo.capitan.nombres}"></span>
+  </p>
 
-<table border="1">
+  <div class="p5-bar"></div>
 
-<tr>
-    <th>ID</th>
-    <th>Nombre</th>
-    <th>Username</th>
-</tr>
+  <h2 class="p5-section-title">Jugadores del equipo</h2>
 
-<tr th:each="ej : ${listaJugadores}">
-    <td th:text="${ej.idEquipoJugador}"></td>
-    <td th:text="${ej.usuario.nombres}"></td>
-    <td th:text="${ej.usuario.username}"></td>
-</tr>
+  <div class="p5-table-wrap">
+    <table class="p5-table">
 
-</table>
+      <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Username</th>
+      </tr>
 
-<br>
+      <tr th:each="ej : ${listaJugadores}">
+          <td th:text="${ej.idEquipoJugador}"></td>
+          <td th:text="${ej.usuario.nombres}"></td>
+          <td th:text="${ej.usuario.username}"></td>
+      </tr>
 
-<h3>Agregar jugador</h3>
+    </table>
+  </div>
 
-<form th:action="@{/equipos/{id}/agregar-jugador(id=${equipo.idEquipo})}"
-      th:object="${nuevoJugador}"
-      method="post">
+  <br>
 
-    <select th:field="*{usuario}">
-        <option
-            th:each="u : ${listaUsuarios}"
-            th:value="${u.idUsuario}"
-            th:text="${u.nombres}">
-        </option>
-    </select>
+  <h2 class="p5-section-title">Agregar jugador</h2>
 
-    <button type="submit">Agregar</button>
+  <div class="p5-form-card">
 
-</form>
+    <form th:action="@{/equipos/{id}/agregar-jugador(id=${equipo.idEquipo})}"
+          th:object="${nuevoJugador}"
+          method="post">
 
-<br>
-<a href="/equipos">Volver al listado</a>
+        <div class="p5-field">
+            <label>Jugador</label>
+            <select th:field="*{usuario}">
+                <option
+                    th:each="u : ${listaUsuarios}"
+                    th:value="${u.idUsuario}"
+                    th:text="${u.nombres}">
+                </option>
+            </select>
+        </div>
+
+        <button type="submit" class="p5-btn">Agregar</button>
+
+    </form>
+
+  </div>
+
+  <br>
+  <a href="/equipos" class="p5-link-back">&larr; Volver al listado</a>
+
+</div>
 
 </body>
 </html>

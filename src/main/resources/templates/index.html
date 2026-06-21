@@ -4,55 +4,74 @@
 <head>
 <meta charset="UTF-8">
 <title>Sistema de Torneos E-Sports</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
 
-<h1>Sistema de Gestión de Torneos E-Sports</h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/" class="active">Inicio</a></li>
+      <li><a href="/torneos">Torneos</a></li>
+      <li><a href="/equipos">Equipos</a></li>
+      <li><a href="/videojuegos">Videojuegos</a></li>
+      <li><a href="/usuarios">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<hr>
+<header class="p5-page-header">
+  <p class="p5-page-sub">Panel de control</p>
+  <h1 class="p5-page-title">Sistema de gestión de torneos E-Sports</h1>
+</header>
 
-<h2>Mantenimientos</h2>
+<div class="p5-container">
 
-<ul>
+  <h2 class="p5-section-title">Mantenimientos</h2>
+  <div class="p5-grid">
 
-    <li>
-        <a href="/videojuegos">
-            Gestión de Videojuegos
-        </a>
-    </li>
+    <a href="/videojuegos" class="p5-tile">
+      <p class="p5-tile-icon">Catálogo</p>
+      <p class="p5-tile-title">Gestión de videojuegos</p>
+    </a>
 
-    <li>
-        <a href="/torneos">
-            Gestión de Torneos
-        </a>
-    </li>
-	
-	<li>
-	    <a href="/usuarios">
-	        Gestión de Usuarios
-	    </a>
-	</li>
-	
-	<li>
-	    <a href="/equipos">
-	        Gestión de Equipos
-	    </a>
-	</li>
-	
-	<li>
-	    <a href="/reportes/clasificacion" target="_blank">
-	        Reporte de Clasificación (PDF)
-	    </a>
-	</li>
-	
-	<li>
-	    <a href="/reportes/torneos-inscripciones" target="_blank">
-	        Reporte de Torneos por Inscripciones (PDF)
-	    </a>
-	</li>
-	
-</ul>
+    <a href="/torneos" class="p5-tile">
+      <p class="p5-tile-icon">Eventos</p>
+      <p class="p5-tile-title">Gestión de torneos</p>
+    </a>
+
+    <a href="/usuarios" class="p5-tile">
+      <p class="p5-tile-icon">Accesos</p>
+      <p class="p5-tile-title">Gestión de usuarios</p>
+    </a>
+
+    <a href="/equipos" class="p5-tile">
+      <p class="p5-tile-icon">Plantillas</p>
+      <p class="p5-tile-title">Gestión de equipos</p>
+    </a>
+
+  </div>
+
+  <div class="p5-bar"></div>
+
+  <h2 class="p5-section-title">Reportes</h2>
+  <div class="p5-grid">
+
+    <a href="/reportes/clasificacion" target="_blank" class="p5-tile">
+      <p class="p5-tile-icon">PDF</p>
+      <p class="p5-tile-title">Reporte de clasificación</p>
+    </a>
+
+    <a href="/reportes/torneos-inscripciones" target="_blank" class="p5-tile">
+      <p class="p5-tile-icon">PDF</p>
+      <p class="p5-tile-title">Torneos por inscripciones</p>
+    </a>
+
+  </div>
+
+</div>
 
 </body>
 </html>

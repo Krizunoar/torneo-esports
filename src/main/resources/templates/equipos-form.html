@@ -3,48 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <title>Registrar Equipo</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Registrar Equipo</h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos">Torneos</a></li>
+      <li><a href="/equipos" class="active">Equipos</a></li>
+      <li><a href="/videojuegos">Videojuegos</a></li>
+      <li><a href="/usuarios">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<form th:action="@{/equipos/guardar}"
-      th:object="${equipo}"
-      method="post">
+<header class="p5-page-header">
+  <p class="p5-page-sub">Mantenimiento</p>
+  <h1 class="p5-page-title">Registrar equipo</h1>
+</header>
 
-    <p>
-        Nombre del equipo:
-        <input type="text" th:field="*{nombre}">
-    </p>
+<div class="p5-container">
 
-    <p>
-        Videojuego:
-        <select th:field="*{videojuego}">
-            <option
-                th:each="v : ${listaVideojuegos}"
-                th:value="${v.idVideojuego}"
-                th:text="${v.nombre}">
-            </option>
-        </select>
-    </p>
+  <div class="p5-form-card">
 
-    <p>
-        Capitán:
-        <select th:field="*{capitan}">
-            <option
-                th:each="u : ${listaUsuarios}"
-                th:value="${u.idUsuario}"
-                th:text="${u.nombres}">
-            </option>
-        </select>
-    </p>
+    <form th:action="@{/equipos/guardar}"
+          th:object="${equipo}"
+          method="post">
 
-    <button type="submit">Guardar</button>
+        <div class="p5-field">
+            <label>Nombre del equipo</label>
+            <input type="text" th:field="*{nombre}">
+        </div>
 
-</form>
+        <div class="p5-field">
+            <label>Videojuego</label>
+            <select th:field="*{videojuego}">
+                <option
+                    th:each="v : ${listaVideojuegos}"
+                    th:value="${v.idVideojuego}"
+                    th:text="${v.nombre}">
+                </option>
+            </select>
+        </div>
 
-<br>
-<a href="/equipos">Volver</a>
+        <div class="p5-field">
+            <label>Capitán</label>
+            <select th:field="*{capitan}">
+                <option
+                    th:each="u : ${listaUsuarios}"
+                    th:value="${u.idUsuario}"
+                    th:text="${u.nombres}">
+                </option>
+            </select>
+        </div>
+
+        <button type="submit" class="p5-btn">Guardar</button>
+
+    </form>
+
+  </div>
+
+  <br>
+  <a href="/equipos" class="p5-link-back">&larr; Volver</a>
+
+</div>
 
 </body>
 </html>

@@ -4,86 +4,99 @@
 <head>
 <meta charset="UTF-8">
 <title>Registrar Torneo</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
 
-<h1>Registrar Torneo</h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos" class="active">Torneos</a></li>
+      <li><a href="/equipos">Equipos</a></li>
+      <li><a href="/videojuegos">Videojuegos</a></li>
+      <li><a href="/usuarios">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<form th:action="@{/torneos/guardar}"
-      th:object="${torneo}"
-      method="post">
+<header class="p5-page-header">
+  <p class="p5-page-sub">Mantenimiento</p>
+  <h1 class="p5-page-title">Registrar torneo</h1>
+</header>
 
-    <p>
-        Nombre:
-        <input type="text"
-               th:field="*{nombre}">
-    </p>
+<div class="p5-container">
 
-    <p>
-        Descripción:
-        <input type="text"
-               th:field="*{descripcion}">
-    </p>
+  <div class="p5-form-card">
 
-    <p>
-        Fecha Inicio:
-        <input type="date"
-               th:field="*{fechaInicio}">
-    </p>
+    <form th:action="@{/torneos/guardar}"
+          th:object="${torneo}"
+          method="post">
 
-    <p>
-        Fecha Fin:
-        <input type="date"
-               th:field="*{fechaFin}">
-    </p>
+        <div class="p5-field">
+            <label>Nombre</label>
+            <input type="text" th:field="*{nombre}">
+        </div>
 
-    <p>
-        Cupo Máximo:
-        <input type="number"
-               th:field="*{cupoMaximo}">
-    </p>
+        <div class="p5-field">
+            <label>Descripción</label>
+            <input type="text" th:field="*{descripcion}">
+        </div>
 
-    <p>
-        Estado:
-        <input type="text"
-               th:field="*{estado}">
-    </p>
+        <div class="p5-field">
+            <label>Fecha inicio</label>
+            <input type="date" th:field="*{fechaInicio}">
+        </div>
 
-    <p>
-        Videojuego:
+        <div class="p5-field">
+            <label>Fecha fin</label>
+            <input type="date" th:field="*{fechaFin}">
+        </div>
 
-        <select th:field="*{videojuego}">
+        <div class="p5-field">
+            <label>Cupo máximo</label>
+            <input type="number" th:field="*{cupoMaximo}">
+        </div>
 
-            <option
-                th:each="v : ${listaVideojuegos}"
-                th:value="${v.idVideojuego}"
-                th:text="${v.nombre}">
-            </option>
+        <div class="p5-field">
+            <label>Estado</label>
+            <input type="text" th:field="*{estado}">
+        </div>
 
-        </select>
+        <div class="p5-field">
+            <label>Videojuego</label>
+            <select th:field="*{videojuego}">
+                <option
+                    th:each="v : ${listaVideojuegos}"
+                    th:value="${v.idVideojuego}"
+                    th:text="${v.nombre}">
+                </option>
+            </select>
+        </div>
 
-    </p>
-	
-	
-	<p>
-	    Organizador:
+        <div class="p5-field">
+            <label>Organizador</label>
+            <select th:field="*{organizador}">
+                <option
+                    th:each="o : ${listaOrganizadores}"
+                    th:value="${o.idUsuario}"
+                    th:text="${o.nombres}">
+                </option>
+            </select>
+        </div>
 
-	    <select th:field="*{organizador}">
-	        <option
-	            th:each="o : ${listaOrganizadores}"
-	            th:value="${o.idUsuario}"
-	            th:text="${o.nombres}">
-	        </option>
-	    </select>
+        <button type="submit" class="p5-btn">Guardar</button>
 
-	</p>
+    </form>
 
-    <button type="submit">
-        Guardar
-    </button>
+  </div>
 
-</form>
+  <br>
+  <a href="/torneos" class="p5-link-back">&larr; Volver al listado</a>
+
+</div>
 
 </body>
 </html>

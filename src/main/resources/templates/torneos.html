@@ -3,51 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <title>Torneos</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Listado de Torneos</h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos" class="active">Torneos</a></li>
+      <li><a href="/equipos">Equipos</a></li>
+      <li><a href="/videojuegos">Videojuegos</a></li>
+      <li><a href="/usuarios">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<table border="1">
+<header class="p5-page-header">
+  <p class="p5-page-sub">Mantenimiento</p>
+  <h1 class="p5-page-title">Listado de torneos</h1>
+</header>
 
-<tr>
-    <th>ID</th>
-    <th>Nombre</th>
-    <th>Videojuego</th>
-    <th>Estado</th>
-</tr>
+<div class="p5-container">
 
-<tr th:each="t : ${listaTorneos}">
+  <div class="p5-table-wrap">
+    <table class="p5-table">
 
-    <td th:text="${t.idTorneo}"></td>
+      <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Videojuego</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+      </tr>
 
-    <td th:text="${t.nombre}"></td>
+      <tr th:each="t : ${listaTorneos}">
 
-    <td th:text="${t.videojuego.nombre}"></td>
+          <td th:text="${t.idTorneo}"></td>
+          <td th:text="${t.nombre}"></td>
+          <td th:text="${t.videojuego.nombre}"></td>
+          <td><span class="p5-badge p5-badge-active" th:text="${t.estado}"></span></td>
 
-    <td th:text="${t.estado}"></td>
-	
-	<td>
-		    <a 
-			th:href="@{/torneos/{id}/inscripciones(id=${t.idTorneo})}">
-		    Ver inscripciones
-		    </a>
-		
-			<a
-			 th:href="@{/torneos/{id}/partidas(id=${t.idTorneo})}">
-			 Ver partidas
-			</a>
-	</td>
-	
+          <td>
+              <a class="p5-btn-outline p5-btn" style="padding:6px 14px; font-size:11px;"
+                 th:href="@{/torneos/{id}/inscripciones(id=${t.idTorneo})}">
+                 Inscripciones
+              </a>
+              <a class="p5-btn-outline p5-btn" style="padding:6px 14px; font-size:11px;"
+                 th:href="@{/torneos/{id}/partidas(id=${t.idTorneo})}">
+                 Partidas
+              </a>
+          </td>
 
-	
-</tr>
+      </tr>
 
-</table>
+    </table>
+  </div>
 
-<br>
-<a href="/">Volver al inicio</a>
+  <br>
+  <a href="/" class="p5-link-back">&larr; Volver al inicio</a>
 
+</div>
 
 </body>
 </html>

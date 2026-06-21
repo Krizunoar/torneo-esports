@@ -3,58 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <title>Videojuegos</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Listado de Videojuegos</h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos">Torneos</a></li>
+      <li><a href="/equipos">Equipos</a></li>
+      <li><a href="/videojuegos" class="active">Videojuegos</a></li>
+      <li><a href="/usuarios">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<a href="/videojuegos/nuevo">
-    Nuevo Videojuego
-</a>
+<header class="p5-page-header">
+  <p class="p5-page-sub">Mantenimiento</p>
+  <h1 class="p5-page-title">Listado de videojuegos</h1>
+</header>
 
-<br><br>
+<div class="p5-container">
 
-<table border="1">
+  <a href="/videojuegos/nuevo" class="p5-btn">+ Nuevo videojuego</a>
 
-<tr>
-    <th>ID</th>
-    <th>Nombre</th>
-    <th>Genero</th>
-    <th>Plataforma</th>
-	<th>Acciones</th>
-</tr>
+  <br><br>
 
-<tr th:each="v : ${listaVideojuegos}">
+  <div class="p5-table-wrap">
+    <table class="p5-table">
 
-    <td th:text="${v.idVideojuego}"></td>
+      <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Género</th>
+          <th>Plataforma</th>
+          <th>Acciones</th>
+      </tr>
 
-    <td th:text="${v.nombre}"></td>
+      <tr th:each="v : ${listaVideojuegos}">
 
-    <td th:text="${v.genero}"></td>
+          <td th:text="${v.idVideojuego}"></td>
+          <td th:text="${v.nombre}"></td>
+          <td><span class="p5-badge p5-badge-pending" th:text="${v.genero}"></span></td>
+          <td th:text="${v.plataforma}"></td>
 
-    <td th:text="${v.plataforma}"></td>
-	
-	<td>
+          <td>
+              <a class="p5-btn-outline p5-btn" style="padding:6px 14px; font-size:11px;"
+                 th:href="@{/videojuegos/editar/{id}(id=${v.idVideojuego})}">
+                 Editar
+              </a>
+              <a class="p5-btn-danger p5-btn" style="padding:6px 14px; font-size:11px;"
+                 th:href="@{/videojuegos/eliminar/{id}(id=${v.idVideojuego})}">
+                 Eliminar
+              </a>
+          </td>
 
-	<a th:href="@{/videojuegos/editar/{id}(id=${v.idVideojuego})}">
-	Editar
-	</a>
+      </tr>
 
-	|
+    </table>
+  </div>
 
-	<a th:href="@{/videojuegos/eliminar/{id}(id=${v.idVideojuego})}">
-	Eliminar
-	</a>
+  <br>
+  <a href="/" class="p5-link-back">&larr; Volver al inicio</a>
 
-	</td>
-	
-</tr>
-
-</table>
-
-<br>
-<a href="/">Volver al inicio</a>
-
+</div>
 
 </body>
 </html>

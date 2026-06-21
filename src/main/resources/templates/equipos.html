@@ -3,55 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <title>Equipos</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Listado de Equipos</h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos">Torneos</a></li>
+      <li><a href="/equipos" class="active">Equipos</a></li>
+      <li><a href="/videojuegos">Videojuegos</a></li>
+      <li><a href="/usuarios">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<a href="/equipos/nuevo">
-    Nuevo Equipo
-</a>
+<header class="p5-page-header">
+  <p class="p5-page-sub">Mantenimiento</p>
+  <h1 class="p5-page-title">Listado de equipos</h1>
+</header>
 
-<br><br>
+<div class="p5-container">
 
-<table border="1">
+  <a href="/equipos/nuevo" class="p5-btn">+ Nuevo equipo</a>
 
-<tr>
-    <th>ID</th>
-    <th>Nombre</th>
-    <th>Videojuego</th>
-    <th>Capitán</th>
-    <th>Acciones</th>
-</tr>
+  <br><br>
 
-<tr th:each="e : ${listaEquipos}">
+  <div class="p5-table-wrap">
+    <table class="p5-table">
 
-    <td th:text="${e.idEquipo}"></td>
-    <td th:text="${e.nombre}"></td>
-    <td th:text="${e.videojuego.nombre}"></td>
-    <td th:text="${e.capitan.nombres}"></td>
+      <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Videojuego</th>
+          <th>Capitán</th>
+          <th>Acciones</th>
+      </tr>
 
-    <td>
-        <a th:href="@{/equipos/{id}(id=${e.idEquipo})}">
-            Ver jugadores
-        </a>
-        |
-        <a th:href="@{/equipos/eliminar/{id}(id=${e.idEquipo})}">
-            Eliminar
-        </a>
-		
-		<a th:href="@{/equipos/{id}/historial(id=${e.idEquipo})}">
-		    Ver historial
-		</a>	
-		
-    </td>
+      <tr th:each="e : ${listaEquipos}">
 
-</tr>
+          <td th:text="${e.idEquipo}"></td>
+          <td th:text="${e.nombre}"></td>
+          <td th:text="${e.videojuego.nombre}"></td>
+          <td th:text="${e.capitan.nombres}"></td>
 
-</table>
+          <td>
+              <a class="p5-btn-outline p5-btn" style="padding:6px 14px; font-size:11px;"
+                 th:href="@{/equipos/{id}(id=${e.idEquipo})}">
+                 Jugadores
+              </a>
+              <a class="p5-btn-outline p5-btn" style="padding:6px 14px; font-size:11px;"
+                 th:href="@{/equipos/{id}/historial(id=${e.idEquipo})}">
+                 Historial
+              </a>
+              <a class="p5-btn-danger p5-btn" style="padding:6px 14px; font-size:11px;"
+                 th:href="@{/equipos/eliminar/{id}(id=${e.idEquipo})}">
+                 Eliminar
+              </a>
+          </td>
 
-<br>
-<a href="/">Volver al inicio</a>
+      </tr>
+
+    </table>
+  </div>
+
+  <br>
+  <a href="/" class="p5-link-back">&larr; Volver al inicio</a>
+
+</div>
 
 </body>
 </html>

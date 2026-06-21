@@ -3,49 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <title>Registrar Videojuego</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Registrar Videojuego</h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos">Torneos</a></li>
+      <li><a href="/equipos">Equipos</a></li>
+      <li><a href="/videojuegos" class="active">Videojuegos</a></li>
+      <li><a href="/usuarios">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<form th:action="@{/videojuegos/guardar}"
-      th:object="${videojuego}"
-      method="post">
+<header class="p5-page-header">
+  <p class="p5-page-sub">Mantenimiento</p>
+  <h1 class="p5-page-title">Registrar videojuego</h1>
+</header>
 
-    <input type="hidden"
-           th:field="*{idVideojuego}">
+<div class="p5-container">
 
-    Nombre:
-    <input type="text"
-           th:field="*{nombre}">
-    <br><br>
+  <div class="p5-form-card">
 
-    Género:
-    <input type="text"
-           th:field="*{genero}">
-    <br><br>
+    <form th:action="@{/videojuegos/guardar}"
+          th:object="${videojuego}"
+          method="post">
 
-    Plataforma:
-    <input type="text"
-           th:field="*{plataforma}">
-    <br><br>
+        <input type="hidden" th:field="*{idVideojuego}">
 
-    Desarrollador:
-    <input type="text"
-           th:field="*{desarrollador}">
-    <br><br>
+        <div class="p5-field">
+            <label>Nombre</label>
+            <input type="text" th:field="*{nombre}">
+        </div>
 
-	
-	
-    <button type="submit">
-        Guardar
-    </button>
+        <div class="p5-field">
+            <label>Género</label>
+            <input type="text" th:field="*{genero}">
+        </div>
 
-</form>
-<br>
-<a href="/videojuegos">
-    Volver
-</a>
+        <div class="p5-field">
+            <label>Plataforma</label>
+            <input type="text" th:field="*{plataforma}">
+        </div>
+
+        <div class="p5-field">
+            <label>Desarrollador</label>
+            <input type="text" th:field="*{desarrollador}">
+        </div>
+
+        <button type="submit" class="p5-btn">Guardar</button>
+
+    </form>
+
+  </div>
+
+  <br>
+  <a href="/videojuegos" class="p5-link-back">&larr; Volver</a>
+
+</div>
 
 </body>
 </html>

@@ -3,56 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <title>Usuarios</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Listado de Usuarios</h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos">Torneos</a></li>
+      <li><a href="/equipos">Equipos</a></li>
+      <li><a href="/videojuegos">Videojuegos</a></li>
+      <li><a href="/usuarios" class="active">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<a href="/usuarios/nuevo">
-    Nuevo Usuario
-</a>
+<header class="p5-page-header">
+  <p class="p5-page-sub">Mantenimiento</p>
+  <h1 class="p5-page-title">Listado de usuarios</h1>
+</header>
 
-<br><br>
+<div class="p5-container">
 
-<table border="1">
+  <a href="/usuarios/nuevo" class="p5-btn">+ Nuevo usuario</a>
 
-<tr>
-    <th>ID</th>
-    <th>Nombres</th>
-    <th>Apellidos</th>
-    <th>Username</th>
-    <th>Correo</th>
-    <th>Rol</th>
-    <th>Estado</th>
-    <th>Acciones</th>
-</tr>
+  <br><br>
 
-<tr th:each="u : ${listaUsuarios}">
+  <div class="p5-table-wrap">
+    <table class="p5-table">
 
-    <td th:text="${u.idUsuario}"></td>
-    <td th:text="${u.nombres}"></td>
-    <td th:text="${u.apellidos}"></td>
-    <td th:text="${u.username}"></td>
-    <td th:text="${u.correo}"></td>
-    <td th:text="${u.rol.nombre}"></td>
-    <td th:text="${u.estado}"></td>
+      <tr>
+          <th>ID</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Username</th>
+          <th>Correo</th>
+          <th>Rol</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+      </tr>
 
-    <td>
-        <a th:href="@{/usuarios/editar/{id}(id=${u.idUsuario})}">
-            Editar
-        </a>
-        |
-        <a th:href="@{/usuarios/eliminar/{id}(id=${u.idUsuario})}">
-            Eliminar
-        </a>
-    </td>
+      <tr th:each="u : ${listaUsuarios}">
 
-</tr>
+          <td th:text="${u.idUsuario}"></td>
+          <td th:text="${u.nombres}"></td>
+          <td th:text="${u.apellidos}"></td>
+          <td th:text="${u.username}"></td>
+          <td th:text="${u.correo}"></td>
+          <td><span class="p5-badge p5-badge-pending" th:text="${u.rol.nombre}"></span></td>
+          <td th:text="${u.estado}"></td>
 
-</table>
+          <td>
+              <a class="p5-btn-outline p5-btn" style="padding:6px 14px; font-size:11px;"
+                 th:href="@{/usuarios/editar/{id}(id=${u.idUsuario})}">
+                 Editar
+              </a>
+              <a class="p5-btn-danger p5-btn" style="padding:6px 14px; font-size:11px;"
+                 th:href="@{/usuarios/eliminar/{id}(id=${u.idUsuario})}">
+                 Eliminar
+              </a>
+          </td>
 
-<br>
-<a href="/">Volver al inicio</a>
+      </tr>
+
+    </table>
+  </div>
+
+  <br>
+  <a href="/" class="p5-link-back">&larr; Volver al inicio</a>
+
+</div>
 
 </body>
 </html>

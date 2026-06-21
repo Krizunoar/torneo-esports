@@ -3,53 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <title>Registrar Usuario</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Registrar Usuario</h1>
+<nav class="p5-navbar">
+  <div class="p5-navbar-inner">
+    <a href="/" class="p5-brand">TORNEO<span>ESPORTS</span></a>
+    <ul class="p5-nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/torneos">Torneos</a></li>
+      <li><a href="/equipos">Equipos</a></li>
+      <li><a href="/videojuegos">Videojuegos</a></li>
+      <li><a href="/usuarios" class="active">Usuarios</a></li>
+    </ul>
+  </div>
+</nav>
 
-<form th:action="@{/usuarios/guardar}"
-      th:object="${usuario}"
-      method="post">
+<header class="p5-page-header">
+  <p class="p5-page-sub">Mantenimiento</p>
+  <h1 class="p5-page-title">Registrar usuario</h1>
+</header>
 
-    <input type="hidden" th:field="*{idUsuario}">
+<div class="p5-container">
 
-    Nombres:
-    <input type="text" th:field="*{nombres}">
-    <br><br>
+  <div class="p5-form-card">
 
-    Apellidos:
-    <input type="text" th:field="*{apellidos}">
-    <br><br>
+    <form th:action="@{/usuarios/guardar}"
+          th:object="${usuario}"
+          method="post">
 
-    Username:
-    <input type="text" th:field="*{username}">
-    <br><br>
+        <input type="hidden" th:field="*{idUsuario}">
 
-    Password:
-    <input type="password" th:field="*{password}">
-    <br><br>
+        <div class="p5-field">
+            <label>Nombres</label>
+            <input type="text" th:field="*{nombres}">
+        </div>
 
-    Correo:
-    <input type="email" th:field="*{correo}">
-    <br><br>
+        <div class="p5-field">
+            <label>Apellidos</label>
+            <input type="text" th:field="*{apellidos}">
+        </div>
 
-    Rol:
-    <select th:field="*{rol}">
-        <option
-            th:each="r : ${listaRoles}"
-            th:value="${r.idRol}"
-            th:text="${r.nombre}">
-        </option>
-    </select>
-    <br><br>
+        <div class="p5-field">
+            <label>Username</label>
+            <input type="text" th:field="*{username}">
+        </div>
 
-    <button type="submit">Guardar</button>
+        <div class="p5-field">
+            <label>Password</label>
+            <input type="password" th:field="*{password}">
+        </div>
 
-</form>
+        <div class="p5-field">
+            <label>Correo</label>
+            <input type="email" th:field="*{correo}">
+        </div>
 
-<br>
-<a href="/usuarios">Volver</a>
+        <div class="p5-field">
+            <label>Rol</label>
+            <select th:field="*{rol}">
+                <option
+                    th:each="r : ${listaRoles}"
+                    th:value="${r.idRol}"
+                    th:text="${r.nombre}">
+                </option>
+            </select>
+        </div>
+
+        <button type="submit" class="p5-btn">Guardar</button>
+
+    </form>
+
+  </div>
+
+  <br>
+  <a href="/usuarios" class="p5-link-back">&larr; Volver</a>
+
+</div>
 
 </body>
 </html>
